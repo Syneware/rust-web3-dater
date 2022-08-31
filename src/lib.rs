@@ -2,12 +2,14 @@ use chrono::{DateTime, FixedOffset};
 use std::collections::HashMap;
 use web3::types::{Block, BlockId, H256};
 
+/// Web3Dater is using `web3` client that allows to get block by date.
 pub struct Web3Dater {
     web3client: web3::Web3<web3::transports::Http>,
     blocks_cache: HashMap<u64, Block<H256>>,
 }
 
 impl Web3Dater {
+    /// Create a new Web3Dater instance.
     pub fn new(web3client: web3::Web3<web3::transports::Http>) -> Self {
         Self {
             web3client,
@@ -15,10 +17,14 @@ impl Web3Dater {
         }
     }
 
+    /// Clears the cache of blocks.
     pub fn clear_cache(&mut self) {
         self.blocks_cache.clear();
     }
 
+    /// Get the closest block to the given date.
+    ///
+    /// `after` is a flag that indicates whether the block should be after or before the given date.
     pub async fn get_block_by_date(&mut self, date: DateTime<FixedOffset>, after: bool) -> Result<Block<H256>, web3::Error> {
         let target_timestamp = date.timestamp();
 
