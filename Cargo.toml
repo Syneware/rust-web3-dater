@@ -1,0 +1,18 @@
+[package]
+name = "web3_dater"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A simple library to get ethereum block by date using web3"
+repository = "https://github.com/Syneware/rust-web3-dater"
+readme = "README.md"
+keywords = ["web3", "ethereum", "block", "date"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+web3 = "0.18.0"
+chrono = "0.4"
+
+[dev-dependencies]
+tokio = { version = "1.20.1", features = ["full"] }
